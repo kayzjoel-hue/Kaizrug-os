@@ -1,0 +1,193 @@
+/* ===============================
+   1. Core Palette & Typography
+   =============================== */
+:root {
+  --bg: #12161c;
+  --panel: #182029;
+  --card: #1F2A37;
+  --text: #E9E3D5;
+  --muted: #9aa0a6;
+  --accent: #8C8B3C;
+  --border: #2e3b4a;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; transition: all .25s ease-in-out; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: radial-gradient(circle at top left, #0f1318 0%, #12161c 60%, #0b0e11 100%);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* ===============================
+   2. System Bar
+   =============================== */
+.system-bar {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 5px #4ade80;
+  margin-right: 6px;
+}
+
+/* ===============================
+   3. Hero Header
+   =============================== */
+.hero {
+  text-align: center;
+  padding: 80px 20px 40px;
+  animation: slideDown 1s ease forwards;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 5vw, 56px);
+  margin: 0;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+/* ===============================
+   4. Navigation
+   =============================== */
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* ===============================
+   5. Grid + Cards
+   =============================== */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.card-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.btn {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 8px 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Workshop Specifics */
+aside {
+  background: rgba(31, 42, 55, 0.5);
+  border-left: 4px solid var(--accent);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.badge-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  border-radius: 2px;
+  margin-top: 10px;
+}

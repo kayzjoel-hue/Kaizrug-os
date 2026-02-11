@@ -1,0 +1,89 @@
+/* =============================================================
+   KAIZRUG GLOBAL BRAND KIT // VERSION 2.0
+   ============================================================= */
+
+:root {
+  --bg: #12161c;
+  --panel: #182029;
+  --card: #1F2A37;
+  --text: #E9E3D5;
+  --muted: #9aa0a6;
+  --accent: #8C8B3C;
+  --border: #2e3b4a;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; transition: all .25s ease-in-out; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: radial-gradient(circle at top left, #0f1318 0%, #12161c 60%, #0b0e11 100%);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* SYSTEM BAR */
+.system-bar {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 5px #4ade80;
+  margin-right: 6px;
+}
+
+/* HERO & NAV */
+.hero { text-align: center; padding: 80px 20px 40px; animation: slideDown 1s ease forwards; }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+.hero h1 { font-family: var(--font-serif); font-size: clamp(36px, 5vw, 56px); margin: 0; color: var(--text); letter-spacing: -0.5px; text-transform: uppercase; }
+.subtitle { font-family: var(--font-mono); font-size: 13px; color: var(--accent); margin-top: 15px; letter-spacing: 1px; }
+
+.nav { display: flex; justify-content: center; gap: 25px; margin-top: 40px; flex-wrap: wrap; }
+.nav a { color: var(--muted); text-decoration: none; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; padding: 6px 12px; border: 1px solid transparent; border-radius: 4px; }
+.nav a:hover, .nav a.active { color: var(--text); border-color: var(--accent); }
+
+/* GRID & CARDS */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px 80px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 60px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 30px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards; display: flex; flex-direction: column; }
+
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.4s; }
+
+.card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 8px 25px rgba(140, 139, 60, 0.15); }
+.card-meta { font-family: var(--font-mono); font-size: 10px; color: var(--accent); margin-bottom: 12px; }
+.card h3 { font-family: var(--font-serif); font-size: 24px; margin: 0 0 12px; }
+
+/* BUTTONS */
+.btn { display: inline-block; background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 10px 20px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; position: relative; overflow: hidden; text-align: center; }
+.btn:hover { background: var(--accent); color: #fff; }
+
+/* UTILS */
+@media (max-width: 768px) { .hero h1 { font-size: 32px; } .grid { grid-template-columns: 1fr; } }
+
