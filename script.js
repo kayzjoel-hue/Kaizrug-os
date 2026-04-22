@@ -27,6 +27,17 @@ if (marqueeTrack) {
   marqueeTrack.innerHTML += marqueeTrack.innerHTML;
 }
 
+const topbar = document.getElementById("topbar");
+
+if (topbar) {
+  const syncTopbar = () => {
+    topbar.classList.toggle("is-scrolled", window.scrollY > 24);
+  };
+
+  syncTopbar();
+  window.addEventListener("scroll", syncTopbar, { passive: true });
+}
+
 const form = document.getElementById("waitlist-form");
 const note = document.getElementById("form-note");
 
