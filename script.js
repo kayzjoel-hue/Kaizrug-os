@@ -1,0 +1,51 @@
+const reveals = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.14,
+      rootMargin: "0px 0px -40px 0px",
+    }
+  );
+
+  reveals.forEach((item) => observer.observe(item));
+} else {
+  reveals.forEach((item) => item.classList.add("is-visible"));
+}
+
+const marqueeTrack = document.querySelector(".marquee-track");
+
+if (marqueeTrack) {
+  marqueeTrack.innerHTML += marqueeTrack.innerHTML;
+}
+
+const form = document.getElementById("waitlist-form");
+const note = document.getElementById("form-note");
+
+if (form && note) {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const emailInput = form.elements.namedItem("email");
+    if (!(emailInput instanceof HTMLInputElement)) {
+      return;
+    }
+
+    note.textContent =
+      emailInput.value.trim().length > 0
+        ? `Demo state updated for ${emailInput.value.trim()}. Wire this form to your email platform when you are ready to collect real signups.`
+        : "Add an email address to join the early access list.";
+
+    if (emailInput.value.trim().length > 0) {
+      form.reset();
+    }
+  });
+}
