@@ -43,20 +43,17 @@ const note = document.getElementById("form-note");
 
 if (form && note) {
   form.addEventListener("submit", (event) => {
-    event.preventDefault();
-
     const emailInput = form.elements.namedItem("email");
     if (!(emailInput instanceof HTMLInputElement)) {
       return;
     }
 
-    note.textContent =
-      emailInput.value.trim().length > 0
-        ? `Demo state updated for ${emailInput.value.trim()}. Wire this form to your email platform when you are ready to collect real signups.`
-        : "Add an email address to join the early access list.";
-
-    if (emailInput.value.trim().length > 0) {
-      form.reset();
+    if (emailInput.value.trim().length === 0) {
+      event.preventDefault();
+      note.textContent = "Add an email address to join the early access list.";
+      return;
     }
+
+    note.textContent = "Submitting early access request...";
   });
 }
