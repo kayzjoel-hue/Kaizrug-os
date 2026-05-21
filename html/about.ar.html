@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="نظام Kaizrug OS – نظام تشغيل ثماني الطبقات لتنفيذ الحياة الحقيقية. ابنِ المملكة.">
+<meta property="og:title" content="Kaizrug OS – ابنِ المملكة">
+<meta property="og:description" content="أثبت أنها تعمل. ثم افتح الأبواب.">
+<meta name="theme-color" content="#0a0e14">
+<title>Kaizrug OS — ابنِ المملكة</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+  * {
+    font-family: 'Noto Sans Arabic', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html, body { overscroll-behavior: none; }
+  body { background: #000; }
+  
+  .gold-text {
+    background: linear-gradient(180deg, #FFF8DC 0%, #F5E6A8 20%, #D4AF37 50%, #B8860B 80%, #8B6F2F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(212,175,55,0.3));
+  }
+  .gold-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .gold-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: skewX(-25deg);
+    animation: shimmer 6s infinite;
+  }
+  @keyframes shimmer {
+    0% { right: -150%; }
+    60%, 100% { right: 150%; }
+  }
+  .section-content {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 2.8s cubic-bezier(0.16,1,0.3,1), transform 2.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  section.active .section-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .layer {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  section.active .layer {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  section.active .layer:nth-child(1) { transition-delay: 0.1s; }
+  section.active .layer:nth-child(2) { transition-delay: 0.25s; }
+  section.active .layer:nth-child(3) { transition-delay: 0.4s; }
+  section.active .layer:nth-child(4) { transition-delay: 0.55s; }
+  section.active .layer:nth-child(5) { transition-delay: 0.7s; }
+  section.active .layer:nth-child(6) { transition-delay: 0.85s; }
+  section.active .layer:nth-child(7) { transition-delay: 1s; }
+  section.active .layer:nth-child(8) { transition-delay: 1.15s; }
+
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+  .arabesque {
+    background-image: radial-gradient(circle at 1px 1px, rgba(212,175,55,0.08) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+  main { scrollbar-width: none; -ms-overflow-style: none; }
+  main::-webkit-scrollbar { display: none; }
+</style>
+</head>
+<body class="bg-black text-white selection:bg-[#D4AF37]/30 selection:text-[#FFD700]">
+  <div class="min-h-screen w-full flex items-center justify-center bg-[#000] md:p-6">
+    <div class="relative w-full h-[100dvh] md:h-[92dvh] overflow-hidden bg-[#050507] md:rounded-[48px] md:ring-1 md:ring-[#D4AF37]/20 md:shadow-[0_0_120px_rgba(0,0,0,0.9)]" style="max-width: min(100vw, 480px); box-shadow: 0 0 0 1px rgba(212,175,55,0.1) inset, 0 25px 80px rgba(0,0,0,0.85);">
+      
+      <!-- Gold particles -->
+      <canvas id="gold-particles" class="absolute inset-0 z-0"></canvas>
+      
+      <!-- Background textures -->
+      <div class="absolute inset-0 z-0 opacity-[0.04] noise mix-blend-soft-light pointer-events-none"></div>
+      <div class="absolute inset-0 arabesque opacity-30 pointer-events-none"></div>
+      
+      <!-- Top glow -->
+      <div class="absolute top-[-200px] right-[-100px] w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none z-0" style="background: radial-gradient(circle, rgba(212,175,55,0.18) 0%, transparent 60%);"></div>
+      <div class="absolute bottom-[-150px] left-[-100px] w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none z-0" style="background: radial-gradient(circle, rgba(184,134,11,0.12) 0%, transparent 60%);"></div>
+
+      <!-- Phone notch -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-b-2xl z-20 md:flex hidden"></div>
+
+      <main id="scroller" class="relative z-10 h-full overflow-y-auto snap-y snap-mandatory scroll-smooth">
+        
+        <!-- 1. HERO -->
+        <section class="relative min-h-full snap-start flex flex-col justify-center px-9 py-16">
+          <div class="section-content">
+            <div class="mb-3 flex justify-end">
+              <div class="h-[2px] w-24 bg-gradient-to-l from-[#D4AF37] to-transparent"></div>
+            </div>
+            <p class="text-[13px] tracking-[0.3em] text-[#D4AF37]/70 mb-6 font-medium" dir="ltr">KAIZRUG OS</p>
+            
+            <h1 class="text-[78px] leading-[0.85] font-black mb-3">
+              <span class="gold-text block">ابنِ</span>
+              <span class="gold-text block">المملكة.</span>
+            </h1>
+            <p class="text-[17px] text-white/55 font-light tracking-wide mt-4" dir="ltr">Build the Kingdom.</p>
+            
+            <div class="mt-24 space-y-5">
+              <div class="relative">
+                <p class="text-[32px] leading-[1.3] font-semibold text-white/95">أثبت أنها تعمل.</p>
+                <p class="text-[32px] leading-[1.3] font-semibold text-white/95">ثم افتح الأبواب.</p>
+                <div class="absolute -right-4 top-2 bottom-2 w-[2px] bg-gradient-to-b from-[#D4AF37]/0 via-[#D4AF37]/60 to-[#D4AF37]/0"></div>
+              </div>
+              <p class="text-[15px] text-white/40 leading-relaxed font-light pr-1" dir="ltr">Prove it works. Then open the gates.</p>
+            </div>
+
+            <div class="absolute bottom-12 left-9 right-9 flex justify-between items-center">
+              <div class="w-10 h-10 rounded-full border border-[#D4AF37]/20 flex items-center justify-center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+              </div>
+              <p class="text-[11px] text-white/30 tracking-widest">الإصدار 1.0</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. المشكلة -->
+        <section class="relative min-h-full snap-start flex flex-col justify-center px-9 py-16">
+          <div class="section-content">
+            <div class="inline-flex items-center gap-2 mb-10 px-3 py-1.5 rounded-full bg-[#D4AF37]/5 border border-[#D4AF37]/15">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse"></span>
+              <span class="text-[12px] text-[#D4AF37]/80 tracking-widest">المشكلة</span>
+            </div>
+
+            <h2 class="text-[44px] leading-[1.15] font-bold text-white/95 mb-8">
+              معظم الأنظمة<br>
+              <span class="text-white/60">تنهار عندما</span><br>
+              <span class="gold-text">تصبح الحياة صاخبة</span>
+            </h2>
+            
+            <p class="text-[16px] text-white/45 font-light" dir="ltr">Most systems break when life gets loud</p>
+
+            <div class="mt-16 relative">
+              <div class="h-[1px] w-full bg-gradient-to-l from-transparent via-[#D4AF37]/30 to-transparent"></div>
+              <div class="absolute top-1/2 -translate-y-1/2 right-0 w-2 h-2 rounded-full bg-[#D4AF37]/50 blur-[2px]"></div>
+              <div class="absolute top-1/2 -translate-y-1/2 right-1/3 w-1 h-1 rounded-full bg-white/20"></div>
+              <div class="absolute top-1/2 -translate-y-1/2 right-2/3 w-1 h-1 rounded-full bg-white/20"></div>
+              <!-- broken visual -->
+              <svg class="w-full h-24 mt-8 opacity-40" viewBox="0 0 400 100" fill="none" aria-hidden="true" focusable="false">
+                <path d="M0 50 H120 M140 50 H260 M280 50 H400" stroke="#D4AF37" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="4 4"/>
+                <path d="M118 50 L135 35 M118 50 L135 65" stroke="#D4AF37" stroke-opacity="0.6" stroke-width="1.5"/>
+                <path d="M258 50 L275 30 M258 50 L275 70" stroke="#D4AF37" stroke-opacity="0.6" stroke-width="1.5"/>
+                <circle cx="130" cy="50" r="3" fill="#D4AF37" fill-opacity="0.5"/>
+                <circle cx="270" cy="50" r="3" fill="#D4AF37" fill-opacity="0.5"/>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. الحل - 8 طبقات -->
+        <section class="relative min-h-full snap-start flex flex-col justify-center px-9 py-16">
+          <div class="section-content">
+            <div class="flex items-baseline justify-between mb-8">
+              <span class="text-[12px] text-white/30" dir="ltr">8 LAYERS</span>
+              <h2 class="text-[36px] font-bold">
+                الحل – <span class="gold-text">8 طبقات</span>
+              </h2>
+            </div>
+
+            <div class="space-y-2.5 mt-2">
+              <div class="layer group relative overflow-hidden border border-[#D4AF37]/20 bg-[#0B0B0F]/70 backdrop-blur-xl rounded-[20px] py-4 px-5 gold-shimmer" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 8px 24px rgba(0,0,0,0.5);">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono text-[#D4AF37]/50">01</span>
+                  <h3 class="text-[20px] font-semibold tracking-wide">الحوكمة والحقيقة</h3>
+                </div>
+              </div>
+              <div class="layer group relative overflow-hidden border border-[#D4AF37]/15 bg-[#0A0A0D]/60 backdrop-blur-xl rounded-[20px] py-4 px-5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono text-[#D4AF37]/40">02</span>
+                  <h3 class="text-[20px] font-medium">التنفيذ <span class="text-white/50 text-[15px]">(الحلقات المفتوحة)</span></h3>
+                </div>
+              </div>
+              <div class="layer group relative overflow-hidden border border-[#D4AF37]/15 bg-[#0A0A0D]/60 backdrop-blur-xl rounded-[20px] py-4 px-5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono text-[#D4AF37]/40">03</span>
+                  <h3 class="text-[20px] font-medium">التكامل</h3>
+                </div>
+              </div>
+              <div class="layer group relative overflow-hidden border border-[#D4AF37]/15 bg-[#0A0A0D]/60 backdrop-blur-xl rounded-[20px] py-4 px-5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono text-[#D4AF37]/40">04</span>
+                  <h3 class="text-[20px] font-medium">خرائط الوصول</h3>
+                </div>
+              </div>
+              <div class="layer group relative overflow-hidden border border-[#D4AF37]/15 bg-[#0A0A0D]/60 backdrop-blur-xl rounded-[20px] py-4 px-5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono text-[#D4AF37]/40">05</span>
+                  <h3 class="text-[20px] font-medium">الحقيقة المالية</h3>
+                </div>
+              </div>
+              <div class="layer group relative overflow-hidden border border-[#D4AF37]/15 bg-[#0A0A0D]/60 backdrop-blur-xl rounded-[20px] py-4 px-5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono text-[#D4AF37]/40">06</span>
+                  <h3 class="text-[20px] font-medium">حقيقة الإيرادات</h3>
+                </div>
+              </div>
+              <div class="layer group relative overflow-hidden border border-[#D4AF37]/15 bg-[#0A0A0D]/60 backdrop-blur-xl rounded-[20px] py-4 px-5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono text-[#D4AF37]/40">07</span>
+                  <h3 class="text-[20px] font-medium">التدقيق</h3>
+                </div>
+              </div>
+              <div class="layer group relative overflow-hidden border border-[#D4AF37]/15 bg-[#0A0A0D]/60 backdrop-blur-xl rounded-[20px] py-4 px-5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono text-[#D4AF37]/40">08</span>
+                  <h3 class="text-[20px] font-medium">وكلاء العمل</h3>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-center text-[12px] text-white/30 mt-6 tracking-widest" dir="ltr">KAIZRUG STACK v1</p>
+          </div>
+        </section>
+
+        <!-- 4. الإثبات -->
+        <section class="relative min-h-full snap-start flex flex-col justify-center px-9 py-16">
+          <div class="section-content">
+            <div class="inline-flex items-center gap-2 mb-10 px-3 py-1.5 rounded-full bg-emerald-500/5 border border-emerald-500/15">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="text-[12px] text-emerald-400/80 tracking-widest">الإثبات</span>
+            </div>
+
+            <h2 class="text-[42px] leading-[1.15] font-bold mb-3">
+              أنظمة حية،<br>
+              <span class="text-white/60">ليست شرائح</span>
+            </h2>
+            <p class="text-[15px] text-white/40 mb-12" dir="ltr">Live systems, not slides</p>
+
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <div class="flex-1 text-right border-b border-white/5 pb-4">
+                  <p class="text-[19px] font-medium">Kaiznet.com — حوكمة</p>
+                  <p class="text-[12px] text-white/40 mt-0.5" dir="ltr">Governance OS • Live</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <div class="flex-1 text-right border-b border-white/5 pb-4">
+                  <p class="text-[19px] font-medium">الحقيقة المالية — لوحة مباشرة</p>
+                  <p class="text-[12px] text-white/40 mt-0.5" dir="ltr">Financial Truth Dashboard</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <div class="flex-1 text-right border-b border-white/5 pb-4">
+                  <p class="text-[19px] font-medium">خرائط الوصول — محرك حي</p>
+                  <p class="text-[12px] text-white/40 mt-0.5" dir="ltr">Access Maps Engine</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <div class="flex-1 text-right">
+                  <p class="text-[19px] font-medium">وكلاء التنفيذ — يعمل الآن</p>
+                  <p class="text-[12px] text-white/40 mt-0.5" dir="ltr">Execution Agents Active</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. CTA -->
+        <section class="relative min-h-full snap-start flex flex-col justify-center px-9 py-16">
+          <div class="section-content">
+            <div class="text-center mb-16">
+              <div class="inline-block mb-6">
+                <div class="w-20 h-20 mx-auto rounded-full border border-[#D4AF37]/30 flex items-center justify-center relative">
+                  <div class="absolute inset-0 rounded-full bg-[#D4AF37]/10 blur-xl animate-pulse"></div>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="relative z-10" aria-hidden="true" focusable="false">
+                    <path d="M12 2L15 8.5L22 9.5L17 14.5L18.5 22L12 18.5L5.5 22L7 14.5L2 9.5L9 8.5L12 2Z" stroke="#D4AF37" stroke-width="1.2" fill="url(#goldGrad)"/>
+                    <defs><linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="24"><stop stop-color="#FFD700"/><stop offset="1" stop-color="#B8860B"/></linearGradient></defs>
+                  </svg>
+                </div>
+              </div>
+              
+              <h2 class="text-[38px] font-bold leading-tight mb-3">
+                <span class="gold-text">شاهد النظام</span><br>
+                <span class="text-white/90">في العمل</span>
+              </h2>
+              <p class="text-[15px] text-white/45" dir="ltr">See the OS in action</p>
+            </div>
+
+            <a href="https://wa.me/971544392894?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%AC%D9%88%D8%A6%D9%84%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B4%D8%A7%D9%87%D8%AF%D8%A9%20Kaizrug%20OS%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%B9%D9%85%D9%84" target="_blank" rel="noopener noreferrer" class="group relative block w-full overflow-hidden rounded-[28px] p-[1.5px] transition-all duration-500 hover:scale-[1.02] active:scale-[0.98]">
+              <div class="absolute inset-0 bg-gradient-to-l from-[#FFD700] via-[#D4AF37] to-[#B8860B] opacity-90 group-hover:opacity-100 transition-opacity"></div>
+              <div class="relative bg-[#0A0A0A] rounded-[26px] px-8 py-7 backdrop-blur-xl overflow-hidden">
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" style="background: radial-gradient(400px circle at var(--x,50%) var(--y,50%), rgba(212,175,55,0.15), transparent 40%);"></div>
+                <div class="relative flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-2xl bg-[#25D366] flex items-center justify-center shadow-lg shadow-[#25D366]/20">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true" focusable="false"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-[24px] font-bold text-white leading-tight">افتح واتساب الآن</p>
+                    <p class="text-[13px] text-white/50 mt-1" dir="ltr">Chat on WhatsApp</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <div class="mt-14 text-center space-y-3">
+              <p class="text-[20px] font-semibold text-white/90">جويل كايزيري</p>
+              <div class="flex items-center justify-center gap-2 text-[14px] text-[#D4AF37]/70">
+                <span>دبي</span>
+                <span class="opacity-40">—</span>
+                <span>شرق أفريقيا</span>
+              </div>
+              <p class="text-[12px] text-white/30 tracking-wide" dir="ltr">Joel Kaizire | Dubai – East Africa</p>
+            </div>
+
+            <div class="absolute bottom-8 left-0 right-0 text-center">
+              <p class="text-[10px] text-white/20 tracking-[0.2em]">KAIZRUG OS • ابنِ المملكة</p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Side progress -->
+      <div class="absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col gap-2">
+        <div class="w-[2px] h-12 bg-[#D4AF37]/40 rounded-full"></div>
+        <div class="w-[2px] h-6 bg-white/10 rounded-full"></div>
+        <div class="w-[2px] h-6 bg-white/10 rounded-full"></div>
+        <div class="w-[2px] h-6 bg-white/10 rounded-full"></div>
+        <div class="w-[2px] h-6 bg-white/10 rounded-full"></div>
+      </div>
+    </div>
+  </div>
+
+<script src="../js/scroll-sections.js"></script>
+</body>
+</html>

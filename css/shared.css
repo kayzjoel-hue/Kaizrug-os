@@ -1,0 +1,227 @@
+/* ============================================
+   Kaizrug OS – Shared Styles & Accessibility
+   ============================================ */
+
+:root {
+  --gold: #D4AF37;
+  --gold-light: #F4E4A8;
+  --gold-dark: #9C7B2E;
+  --bg-dark: #0A0A0B;
+  --text-primary: #f5f5f7;
+  --text-secondary: #b8bec9;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Typography & Text Utilities
+   ============================================ */
+
+.gold-text {
+  background: linear-gradient(135deg, #D4AF37 0%, #F4E4A8 50%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border {
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.gold-glow {
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+}
+
+/* ============================================
+   Glass Morphism & UI Components
+   ============================================ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-4px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Animation Delays */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+.delay-7 { animation-delay: 0.7s; }
+.delay-8 { animation-delay: 0.8s; }
+
+/* ============================================
+   Carousel Animation
+   ============================================ */
+
+@keyframes slideCarousel {
+  0% { transform: translateX(0); }
+  11% { transform: translateX(0); }
+  12.5% { transform: translateX(-100%); }
+  23.5% { transform: translateX(-100%); }
+  25% { transform: translateX(-200%); }
+  36% { transform: translateX(-200%); }
+  37.5% { transform: translateX(-300%); }
+  48.5% { transform: translateX(-300%); }
+  50% { transform: translateX(-400%); }
+  61% { transform: translateX(-400%); }
+  62.5% { transform: translateX(-500%); }
+  73.5% { transform: translateX(-500%); }
+  75% { transform: translateX(-600%); }
+  86% { transform: translateX(-600%); }
+  87.5% { transform: translateX(-700%); }
+  99% { transform: translateX(-700%); }
+  100% { transform: translateX(0); }
+}
+
+.carousel-track {
+  animation: slideCarousel 24s infinite cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.carousel-container {
+  cursor: pointer;
+}
+
+.carousel-container.pause .carousel-track {
+  animation-play-state: paused;
+}
+
+/* ============================================
+   Grid Pattern Background
+   ============================================ */
+
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ============================================
+   Accessibility: Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================
+   Accessibility: SVG Icons
+   ============================================ */
+
+svg[aria-hidden="true"] {
+  focusable: false;
+  pointer-events: none;
+}
+
+/* ============================================
+   RTL Support (Arabic/RTL Languages)
+   ============================================ */
+
+[dir="rtl"] {
+  direction: rtl;
+}
+
+[dir="ltr"] {
+  direction: ltr;
+}
+
+/* ============================================
+   Focus States (Keyboard Navigation)
+   ============================================ */
+
+button:focus,
+a:focus,
+input:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Selection Styling
+   ============================================ */
+
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: white;
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+  .no-print {
+    display: none;
+  }
+}

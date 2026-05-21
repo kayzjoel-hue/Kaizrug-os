@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Joel Kaizire – Builder of operating systems. Hospitality leader. Kaizrug OS architect.">
+<meta property="og:title" content="KAIZRUG OS – Joel Kaizire">
+<meta property="og:description" content="Build the Kingdom. Hospitality Leader | Systems Builder">
+<meta name="theme-color" content="#000000">
+<title>KAIZRUG OS — Joel Kaizire</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&family=Inter:wght@300;400;500&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+    :root {
+        --gold: #D4AF37;
+        --gold-light: #F7E9A8;
+        --gold-dark: #9C7B2E;
+    }
+    body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: #000000;
+        background-image: 
+            radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 175, 55, 0.15), transparent),
+            radial-gradient(ellipse 60% 40% at 50% 120%, rgba(212, 175, 55, 0.08), transparent);
+        background-attachment: fixed;
+    }
+    .arabic {
+        font-family: 'IBM Plex Sans Arabic', sans-serif;
+        font-weight: 600;
+    }
+    .cinzel {
+        font-family: 'Cinzel', serif;
+    }
+    .gold-glow {
+        position: relative;
+    }
+    .gold-glow::before {
+        content: '';
+        position: absolute;
+        inset: -40%;
+        background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+        filter: blur(40px);
+        z-index: -1;
+    }
+    .hairline {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
+    }
+    .fade-up {
+        animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    .fade-up-2 { animation-delay: 0.15s; }
+    .fade-up-3 { animation-delay: 0.3s; }
+    .fade-up-4 { animation-delay: 0.45s; }
+    @keyframes fadeUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .btn-gold {
+        position: relative;
+        isolation: isolate;
+        transition: all 0.4s ease;
+    }
+    .btn-gold::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        padding: 1px;
+        background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        z-index: -1;
+    }
+    .btn-gold:hover {
+        box-shadow: 0 0 30px rgba(212,175,55,0.2), inset 0 0 20px rgba(212,175,55,0.05);
+        transform: translateY(-1px);
+    }
+</style>
+</head>
+<body class="text-white min-h-screen selection:bg-amber-500/20">
+    <div class="relative z-10 flex flex-col min-h-screen">
+        
+        <!-- Header -->
+        <header class="w-full px-6 md:px-10 py-7 flex items-center justify-between">
+            <div class="cinzel text-[13px] md:text-sm tracking-[0.35em] text-white/80">KAIZRUG OS</div>
+            <div class="flex items-center gap-3">
+                <span class="arabic text-[11px] text-white/40" lang="ar" dir="rtl">الإصدار 1.0</span>
+                <div class="w-1 h-1 rounded-full bg-amber-400/40"></div>
+            </div>
+        </header>
+
+        <main class="flex-1">
+            <!-- Hero -->
+            <section class="relative px-6 pt-16 pb-24 md:pt-24 md:pb-32 flex flex-col items-center justify-center text-center min-h-[82vh]">
+                <div class="gold-glow">
+                    <h1 class="arabic text-[4rem] leading-[1.1] sm:text-[5.5rem] md:text-[7rem] lg:text-[8.5rem] font-[600] gold-text fade-up" lang="ar" dir="rtl">
+                        ابنِ المملكة.
+                    </h1>
+                </div>
+                <p class="mt-6 md:mt-8 text-lg md:text-xl text-white/60 font-light tracking-wide fade-up fade-up-2">
+                    Build the Kingdom.
+                </p>
+                
+                <div class="mt-20 md:mt-28 fade-up fade-up-3">
+                    <div class="w-[1px] h-16 md:h-20 mx-auto bg-gradient-to-b from-transparent via-amber-300/30 to-transparent"></div>
+                </div>
+            </section>
+
+            <!-- Second Statement -->
+            <section class="px-6 py-24 md:py-32 border-t border-white/[0.06]">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="arabic text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.4] font-[500] gold-text mb-6" lang="ar" dir="rtl">
+                        أثبت أنها تعمل. ثم افتح الأبواب.
+                    </h2>
+                    <p class="text-base md:text-lg text-white/55 font-light tracking-wide">
+                        Prove it works. Then open the gates.
+                    </p>
+                </div>
+            </section>
+
+            <div class="hairline max-w-6xl mx-auto"></div>
+
+            <!-- Who / What -->
+            <section class="px-6 py-20 md:py-28">
+                <div class="max-w-5xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-16 md:gap-20 lg:gap-28">
+                        
+                        <!-- Who -->
+                        <div class="text-center md:text-left">
+                            <div class="inline-flex items-center gap-2 mb-6">
+                                <div class="w-5 h-[1px] bg-amber-400/40"></div>
+                                <span class="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">Who</span>
+                            </div>
+                            <h3 class="text-[26px] md:text-[28px] font-[450] text-white mb-3 tracking-tight">Joel Kaizire</h3>
+                            <p class="text-[15px] leading-relaxed text-white/65">
+                                Hospitality Leader <span class="text-white/30 mx-2">|</span> Systems Builder
+                            </p>
+                            <p class="mt-3 text-[14px] text-white/40">
+                                Dubai <span class="mx-2 opacity-50">↔</span> East Africa
+                            </p>
+                        </div>
+
+                        <!-- What -->
+                        <div class="text-center md:text-left">
+                            <div class="inline-flex items-center gap-2 mb-6">
+                                <div class="w-5 h-[1px] bg-amber-400/40"></div>
+                                <span class="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">What</span>
+                            </div>
+                            <h3 class="text-[26px] md:text-[28px] font-[450] mb-3 tracking-tight">
+                                <span class="cinzel gold-text tracking-wide">Kaizrug OS</span>
+                            </h3>
+                            <p class="text-[15px] leading-relaxed text-white/65 max-w-sm md:max-w-none mx-auto md:mx-0">
+                                8-layer operating system for real life execution, governed through tracked open loops.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <div class="hairline max-w-6xl mx-auto"></div>
+
+            <!-- Metrics Strip -->
+            <section class="px-6 py-16 md:py-20 bg-white/[0.01] border-y border-white/[0.06]">
+                <div class="max-w-5xl mx-auto">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                        <div class="text-center">
+                            <p class="text-[24px] md:text-[32px] font-[600] gold-text">4</p>
+                            <p class="text-[12px] md:text-[13px] text-white/55 tracking-wide mt-2 uppercase">Public Systems</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[24px] md:text-[32px] font-[600] gold-text">8</p>
+                            <p class="text-[12px] md:text-[13px] text-white/55 tracking-wide mt-2 uppercase">Governance Layers</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[24px] md:text-[32px] font-[600] gold-text">✓</p>
+                            <p class="text-[12px] md:text-[13px] text-white/55 tracking-wide mt-2 uppercase">WCAG 2.1 AA</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[24px] md:text-[32px] font-[600] gold-text">▸</p>
+                            <p class="text-[12px] md:text-[13px] text-white/55 tracking-wide mt-2 uppercase">Cloudflare Ready</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Internal Proof Case Study -->
+            <section class="px-6 py-24 md:py-32">
+                <div class="max-w-3xl mx-auto">
+                    <div class="border border-white/[0.1] rounded-xl p-8 md:p-10 bg-white/[0.01] backdrop-blur-sm">
+                        <div class="inline-flex items-center gap-2 mb-6">
+                            <div class="w-5 h-[1px] bg-amber-400/40"></div>
+                            <span class="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">Proof</span>
+                        </div>
+                        <h3 class="text-[24px] md:text-[28px] font-[500] text-white mb-4">Kaizrug OS v2.1 — Internal Proof</h3>
+                        <p class="text-[15px] leading-relaxed text-white/65 mb-5">
+                            Built and organized a 4-system public portfolio using an 8-layer governance model, tracked through live open loops, accessibility remediation, and deployment-ready structure.
+                        </p>
+                        <p class="text-[13px] text-amber-300/80 tracking-wide">
+                            ✓ Production-ready pre-launch asset · WCAG 2.1 AA remediation documented
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="hairline max-w-6xl mx-auto"></div>
+
+            <!-- Contact -->
+            <section class="px-6 py-24 md:py-32">
+                <div class="max-w-xl mx-auto text-center">
+                    <div class="inline-flex items-center gap-2 mb-10">
+                        <div class="w-5 h-[1px] bg-amber-400/40"></div>
+                        <span class="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">Connect</span>
+                        <div class="w-5 h-[1px] bg-amber-400/40"></div>
+                    </div>
+
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/971544392894" target="_blank" rel="noopener noreferrer" 
+                       class="btn-gold group inline-flex items-center justify-center gap-3.5 px-9 py-4 rounded-full bg-white/[0.02] backdrop-blur-sm hover:bg-white/[0.04]">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-[#D4AF37] group-hover:scale-105 transition-transform" aria-hidden="true" focusable="false">
+                            <path d="M12.001 2C6.47897 2 2 6.477 2 11.999C2 13.893 2.549 15.68 3.525 17.201L2.336 21.658L6.937 20.447C8.373 21.318 10.04 21.8 11.82 21.97L12.001 22C17.523 22 22.001 17.523 22.001 12.001C22.001 6.48 17.523 2 12.001 2ZM17.806 15.182C17.582 15.782 16.48 16.312 15.937 16.382C15.5 16.438 14.955 16.466 14.367 16.28C14.011 16.168 13.562 16.016 12.991 15.77C10.862 14.862 9.462 12.671 9.276 12.415C9.095 12.159 7.802 10.438 7.802 8.659C7.802 6.88 8.705 6.018 9.05 5.667C9.34 5.373 9.74 5.302 9.982 5.302C10.168 5.302 10.354 5.306 10.522 5.314C10.731 5.324 10.991 5.254 11.254 5.886C11.525 6.538 12.178 8.146 12.262 8.318C12.346 8.49 12.402 8.69 12.29 8.946C12.178 9.202 12.122 9.358 11.95 9.558C11.778 9.758 11.606 9.986 11.45 10.138C11.31 10.274 11.15 10.426 11.318 10.71C11.486 10.994 12.062 11.934 12.91 12.69C14.002 13.662 14.906 13.982 15.206 14.134C15.45 14.258 15.71 14.238 15.87 14.066C16.07 13.85 16.33 13.466 16.598 13.086C16.866 12.706 17.162 12.646 17.426 12.746C17.69 12.842 19.078 13.522 19.366 13.666C19.654 13.81 19.838 13.882 19.91 14.002C19.982 14.122 19.982 14.682 19.758 15.282L17.806 15.182Z" fill="currentColor"/>
+                        </svg>
+                        <span class="text-[15px] tracking-wide text-white/90 group-hover:text-white font-[450]">+971 54 439 2894</span>
+                    </a>
+
+                    <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 text-[14px]">
+                        <a href="mailto:kayzjoel@gmail.com" class="group flex items-center gap-2 text-white/55 hover:text-amber-200/90 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="opacity-60 group-hover:opacity-100 transition-opacity" aria-hidden="true" focusable="false">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <path d="M22 6l-10 7L2 6"/>
+                            </svg>
+                            <span>kayzjoel@gmail.com</span>
+                        </a>
+                        <a href="https://instagram.com/joel.kaizire" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2 text-white/55 hover:text-amber-200/90 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="opacity-60 group-hover:opacity-100 transition-opacity" aria-hidden="true" focusable="false">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <circle cx="12" cy="12" r="4"/>
+                                <circle cx="18" cy="6" r="0.5" fill="currentColor" stroke="none"/>
+                            </svg>
+                            <span>@joel.kaizire</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="px-6 py-10 border-t border-white/[0.05]">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                <p class="text-[12px] text-white/35 tracking-wide">
+                    © 2026 Joel Kaizire – Royal Connect Africa
+                </p>
+                <p class="arabic text-[12px] text-white/25" lang="ar" dir="rtl">مملكة تُبنى بأمانة</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Subtle parallax on scroll for gold glow
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.gold-glow');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+                hero.style.opacity = `${1 - scrolled / 800}`;
+            }
+        }, { passive: true });
+    </script>
+</body>
+</html>

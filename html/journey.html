@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Kaizrug OS – Proof in Motion. 8-layer operating system for real-life execution.">
+<meta property="og:title" content="Kaizrug OS – Proof in Motion">
+<meta name="theme-color" content="#0a0e14">
+<title>Kaizrug OS – Proof in Motion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+Arabic:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; background:#000; overflow:hidden; }
+body {
+  font-family:'Inter', system-ui, -apple-system, sans-serif;
+  display:flex; align-items:center; justify-content:center;
+  color:#E6E9F0; -webkit-font-smoothing:antialiased;
+}
+.stage {
+  position:relative; width:100vw; height:100vh;
+  max-width:430px; aspect-ratio:9/16;
+  background:#0a0e14; overflow:hidden;
+  box-shadow:0 0 90px rgba(0,0,0,.85);
+}
+@media (min-width:500px){
+  .stage { height:min(94vh, 840px); border-radius:36px; border:1px solid rgba(212,175,55,.15) }
+}
+#bg { position:absolute; inset:0; z-index:0; }
+.gradient {
+  position:absolute; inset:-30%;
+  background: conic-gradient(from 0deg at 50% 50%, #0a0e14 0%, #141b26 20%, #1a1f2e 40%, #0f131c 60%, #1c2333 80%, #0a0e14 100%);
+  filter:blur(80px) saturate(1.1); opacity:.7;
+  animation: spin 24s linear infinite; z-index:1;
+}
+@keyframes spin { to { transform:rotate(360deg) } }
+.vignette {
+  position:absolute; inset:0; z-index:2;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,.65) 85%),
+              linear-gradient(180deg, rgba(0,0,0,.3) 0%, transparent 20%, transparent 80%, rgba(0,0,0,.5) 100%);
+  pointer-events:none;
+}
+.progress { position:absolute; top:0; left:0; right:0; height:2px; z-index:20; background:rgba(255,255,255,.06); }
+.progress-bar { height:100%; width:0%; background:linear-gradient(90deg, #D4AF37, #F5D77A); box-shadow:0 0 10px rgba(212,175,55,.5); }
+
+.scene {
+  position:absolute; inset:0; z-index:5;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding: clamp(24px, 6vh, 48px) clamp(20px, 6vw, 32px);
+  text-align:center; opacity:0; transform:translateY(30px) scale(.97);
+  transition: opacity .9s cubic-bezier(.22,.8,.24,1), transform .9s cubic-bezier(.22,.8,.24,1);
+  pointer-events:none;
+}
+.scene.active { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+
+.ar { font-family:'Noto Sans Arabic', sans-serif; direction:rtl; }
+
+/* HERO */
+.title-en {
+  font-size: clamp(42px, 11.5vw, 64px); font-weight:800; line-height:.95; letter-spacing:-.02em;
+  background: linear-gradient(180deg, #fff 0%, #e8eaf0 55%, #D4AF37 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  filter: drop-shadow(0 10px 30px rgba(212,175,55,.15));
+}
+.title-ar { font-size: clamp(38px, 10vw, 56px); font-weight:800; color:#F5D77A; margin-top:10px; line-height:1.15; }
+.sub-en { margin-top:32px; font-size: clamp(16px, 4.3vw, 20px); color:#b8bec9; font-weight:400; max-width:320px; line-height:1.4; }
+.sub-ar { font-size: clamp(15px, 4vw, 19px); color:#D4AF37; margin-top:10px; opacity:.95 }
+.sig { position:absolute; bottom:17%; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#7a8190; }
+.scene.active .title-en { animation: rise .9s .1s both; }
+.scene.active .title-ar { animation: rise .9s .25s both; }
+.scene.active .sub-en { animation: rise .9s .42s both; }
+.scene.active .sub-ar { animation: rise .9s .56s both; }
+.scene.active .sig { animation: fade .8s .8s both; }
+
+/* PROBLEM */
+.prob-en { font-size: clamp(28px, 7.8vw, 42px); font-weight:700; line-height:1.15; color:#fff; max-width:340px; }
+.prob-ar { font-size: clamp(22px, 6.2vw, 30px); color:#D4AF37; margin-top:14px; line-height:1.45; }
+.icons-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:38px; width:100%; max-width:340px; }
+.icon-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid rgba(212,175,55,.22); border-radius:18px; padding:18px 8px 14px;
+  backdrop-filter: blur(10px); box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+}
+.icon-card svg { width:26px; height:26px; stroke:#D4AF37; stroke-width:1.5; margin:0 auto 10px; opacity:.95; }
+.icon-card span { display:block; font-size:10.5px; color:#9aa1ad; text-transform:uppercase; letter-spacing:.06em; line-height:1.25; }
+.scene.active .prob-en { animation: rise .8s both; }
+.scene.active .prob-ar { animation: rise .8s .15s both; }
+.scene.active .icon-card:nth-child(1){ animation: rise .7s .3s both; }
+.scene.active .icon-card:nth-child(2){ animation: rise .7s .42s both; }
+.scene.active .icon-card:nth-child(3){ animation: rise .7s .54s both; }
+
+/* STACK */
+.stack-head { margin-bottom:22px; }
+.stack-eyebrow { font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#D4AF37; opacity:.85; }
+.stack-title { font-size: clamp(24px, 6.5vw, 32px); font-weight:700; color:#fff; margin-top:6px; }
+.stack { width:100%; max-width:350px; display:flex; flex-direction:column; gap:9px; }
+.layer {
+  position:relative; display:flex; justify-content:space-between; align-items:center; gap:10px;
+  padding:13px 16px 13px 18px; border-radius:14px;
+  background: linear-gradient(100deg, rgba(212,175,55,.14), rgba(212,175,55,.04));
+  border:1px solid rgba(212,175,55,.28); backdrop-filter: blur(8px); text-align:left;
+  transform:translateY(30px); opacity:0; overflow:hidden;
+}
+.layer::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:linear-gradient(180deg, #D4AF37, #F5D77A);
+}
+.layer .en { font-weight:600; font-size:14.5px; color:#fff; letter-spacing:-.01em; }
+.layer .ar { font-size:13px; color:#F5D77A; opacity:.95; white-space:nowrap; }
+.scene.active .stack-head { animation: fade .6s both; }
+.scene.active .layer { animation: layerIn .55s cubic-bezier(.22,.8,.24,1) forwards; }
+.scene.active .layer:nth-child(1){ animation-delay:.08s } .scene.active .layer:nth-child(2){ animation-delay:.16s }
+.scene.active .layer:nth-child(3){ animation-delay:.24s } .scene.active .layer:nth-child(4){ animation-delay:.32s }
+.scene.active .layer:nth-child(5){ animation-delay:.4s } .scene.active .layer:nth-child(6){ animation-delay:.48s }
+.scene.active .layer:nth-child(7){ animation-delay:.56s } .scene.active .layer:nth-child(8){ animation-delay:.64s }
+
+/* PROOF */
+.proof-en { font-size: clamp(26px, 7.2vw, 36px); font-weight:800; color:#fff; line-height:1.1; }
+.proof-ar { font-size: clamp(20px, 5.4vw, 26px); color:#D4AF37; margin-top:6px; }
+.sites { margin-top:30px; width:100%; max-width:340px; display:flex; flex-direction:column; gap:10px; }
+.site {
+  display:flex; align-items:center; gap:12px; padding:13px 14px;
+  background:rgba(0,0,0,.45); border:1px solid rgba(212,175,55,.22); border-radius:13px; text-align:left;
+  backdrop-filter:blur(6px); transform:translateY(20px); opacity:0;
+}
+.check {
+  width:22px; height:22px; border-radius:50%; flex-shrink:0;
+  background: radial-gradient(circle at 30% 30%, rgba(212,175,55,.35), rgba(212,175,55,.1));
+  border:1px solid #D4AF37; display:grid; place-items:center; box-shadow:0 0 12px rgba(212,175,55,.25) inset;
+}
+.check svg { width:11px; height:11px; stroke:#F5D77A; stroke-width:3; fill:none; }
+.url { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; color:#d6dae2; word-break:break-all; line-height:1.3; }
+.scene.active .proof-en { animation: rise .7s both; }
+.scene.active .proof-ar { animation: rise .7s .12s both; }
+.scene.active .site:nth-child(1){ animation: rise .6s .2s both; }
+.scene.active .site:nth-child(2){ animation: rise .6s .3s both; }
+.scene.active .site:nth-child(3){ animation: rise .6s .4s both; }
+.scene.active .site:nth-child(4){ animation: rise .6s .5s both; }
+
+/* PILLARS */
+.pillars { display:flex; flex-direction:column; gap:16px; width:100%; max-width:330px; margin-top:10px; }
+.pillar {
+  position:relative; padding:22px 20px; border-radius:22px; text-align:center;
+  background: radial-gradient(120% 140% at 0% 0%, rgba(212,175,55,.22), transparent 60%), rgba(255,255,255,.03);
+  border:1px solid rgba(212,175,55,.28); backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.pillar .en { font-size:20px; font-weight:700; color:#fff; margin-bottom:6px; letter-spacing:-.01em; }
+.pillar .ar { font-size:17px; color:#F5D77A; }
+.scene.active .pillar:nth-child(1){ animation: rise .7s .1s both; }
+.scene.active .pillar:nth-child(2){ animation: rise .7s .24s both; }
+.scene.active .pillar:nth-child(3){ animation: rise .7s .38s both; }
+
+/* CTA */
+.cta-wrap { display:flex; flex-direction:column; align-items:center; gap:26px; }
+.cta-btn {
+  position:relative; display:inline-flex; flex-direction:column; align-items:center; gap:4px;
+  padding:22px 38px; text-decoration:none; border-radius:100px; isolation:isolate;
+  background:linear-gradient(100deg, #D4AF37 0%, #F5D77A 45%, #D4AF37 100%);
+  color:#0a0e14; font-weight:800; box-shadow: 0 0 0 0 rgba(212,175,55,.5), 0 12px 34px rgba(212,175,55,.28), inset 0 1px 0 rgba(255,255,255,.5);
+  transform: translateZ(0);
+}
+.cta-btn .en { font-size:20px; letter-spacing:-.01em; }
+.cta-btn .ar { font-size:18px; }
+.cta-btn::after {
+  content:''; position:absolute; inset:-2px; border-radius:inherit; z-index:-1;
+  background:linear-gradient(100deg, #D4AF37, #F5D77A); filter:blur(18px); opacity:.5;
+}
+.scene.active .cta-btn { animation: rise .8s .1s both, pulse 2.4s 1s infinite; }
+.tag-en { font-size:15px; color:#a8afbd; font-weight:500; }
+.tag-ar { font-size:14px; color:#D4AF37; margin-top:4px; }
+.scene.active .tag-en { animation: fade .8s .35s both; }
+.scene.active .tag-ar { animation: fade .8s .5s both; }
+
+.footer {
+  position:absolute; bottom:12px; left:0; right:0; z-index:10;
+  text-align:center; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#5e6573; opacity:.75;
+}
+
+/* animations */
+@keyframes rise { from { opacity:0; transform:translateY(26px) } to { opacity:1; transform:translateY(0) } }
+@keyframes fade { from { opacity:0 } to { opacity:1 } }
+@keyframes layerIn { to { transform:translateY(0); opacity:1 } }
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(212,175,55,.5), 0 12px 34px rgba(212,175,55,.28); transform:scale(1) }
+  50% { box-shadow: 0 0 0 14px rgba(212,175,55,0), 0 16px 44px rgba(212,175,55,.38); transform:scale(1.02) }
+}
+</style>
+</head>
+<body>
+<div class="stage" aria-label="Kaizrug OS – Proof in Motion" role="region">
+  <div class="gradient"></div>
+  <canvas id="bg"></canvas>
+  <div class="vignette"></div>
+  <div class="progress"><div class="progress-bar" id="prog"></div></div>
+  
+  <!-- 1 HERO -->
+  <section class="scene" data-scene="0">
+    <h1 class="title-en">Build the Kingdom.</h1>
+    <h1 class="title-ar ar">ابنِ المملكة.</h1>
+    <p class="sub-en">Prove it works. Then open the gates.</p>
+    <p class="sub-ar ar">أثبت أنها تعمل. ثم افتح الأبواب.</p>
+    <div class="sig">Joel Kaizire | Dubai – East Africa</div>
+  </section>
+
+  <!-- 2 PROBLEM -->
+  <section class="scene" data-scene="1">
+    <h2 class="prob-en">Most systems break when life gets loud</h2>
+    <h2 class="prob-ar ar">معظم الأنظمة تنهار عندما تصبح الحياة صاخبة</h2>
+    <div class="icons-grid">
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12m0 0l4-4m-4 4l-4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Context Switch</span>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3" stroke-linecap="round"/></svg>
+        <span>Drift</span>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M13 17h8M13 7h8M5 12l-3 3 3 3M21 7l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Opportunity Loss</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 SOLUTION STACK -->
+  <section class="scene" data-scene="2">
+    <div class="stack-head">
+      <div class="stack-eyebrow">8-Layer OS</div>
+      <div class="stack-title">Proof in Motion</div>
+    </div>
+    <div class="stack">
+      <div class="layer"><span class="en">Governance & Truth</span><span class="ar">الحوكمة والحقيقة</span></div>
+      <div class="layer"><span class="en">Execution (Open Loops)</span><span class="ar">التنفيذ (الحلقات المفتوحة)</span></div>
+      <div class="layer"><span class="en">Integration</span><span class="ar">التكامل</span></div>
+      <div class="layer"><span class="en">Access Maps</span><span class="ar">خرائط الوصول</span></div>
+      <div class="layer"><span class="en">Financial Reality</span><span class="ar">الواقع المالي</span></div>
+      <div class="layer"><span class="en">Revenue Truth</span><span class="ar">حقيقة الإيرادات</span></div>
+      <div class="layer"><span class="en">Audit</span><span class="ar">التدقيق</span></div>
+      <div class="layer"><span class="en">Agent Workers</span><span class="ar">وكلاء العمل</span></div>
+    </div>
+  </section>
+
+  <!-- 4 PROOF -->
+  <section class="scene" data-scene="3">
+    <h3 class="proof-en">Live systems, not slides</h3>
+    <h3 class="proof-ar ar">أنظمة حية، ليست شرائح</h3>
+    <div class="sites">
+      <div class="site"><div class="check"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 13l4 4L19 7"/></svg></div><div class="url">kaizrug-hq.kayzjoel.workers.dev</div></div>
+      <div class="site"><div class="check"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 13l4 4L19 7"/></svg></div><div class="url">rca-site.pages.dev</div></div>
+      <div class="site"><div class="check"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 13l4 4L19 7"/></svg></div><div class="url">kaizrug-templates.pages.dev</div></div>
+      <div class="site"><div class="check"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 13l4 4L19 7"/></svg></div><div class="url">kaizrug-cv.pages.dev</div></div>
+    </div>
+  </section>
+
+  <!-- 5 PILLARS -->
+  <section class="scene" data-scene="4">
+    <div class="pillars">
+      <div class="pillar">
+        <div class="en">Tourism & Journeys</div>
+        <div class="ar">السياحة والرحلات</div>
+      </div>
+      <div class="pillar">
+        <div class="en">Trade & Commerce</div>
+        <div class="ar">التجارة</div>
+      </div>
+      <div class="pillar">
+        <div class="en">Knowledge & Ebook</div>
+        <div class="ar">المعرفة</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 CTA -->
+  <section class="scene" data-scene="5">
+    <div class="cta-wrap">
+      <a class="cta-btn" href="https://wa.me/971544392894" target="_blank" rel="noopener" aria-label="Contact on WhatsApp">
+        <span class="en">See the OS in action</span>
+        <span class="ar">شاهد النظام</span>
+      </a>
+      <div>
+        <div class="tag-en">Move quiet. Build loud. Leave legacy.</div>
+        <div class="tag-ar ar">تحرك بهدوء. ابنِ بصوت عالٍ. اترك إرثاً.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">Kaizrug HQ v2.0 | Built in Dubai</div>
+</div>
+
+<script src="../js/stage-animator.js"></script>
+</body>
+</html>
