@@ -36,7 +36,7 @@ kaizrug-os-v2.1/
 | `what-is-a-framework-mobile.html` | `journey.html` | Mobile stories experience |
 
 **Benefits:**
-- ✅ `index.html` = automatic Cloudflare Pages home page
+- ✅ Root `index.html` redirects to `html/index.html`
 - ✅ Standard locale naming (`.ar.` instead of `-ar`)
 - ✅ Descriptive, SEO-friendly names
 - ✅ No version numbers in filenames
@@ -142,12 +142,12 @@ git push -u origin main
 4. **Build settings:**
    - Framework: None
    - Build command: (leave blank)
-   - Build output directory: `html`
+   - Build output directory: `/`
 5. Deploy
 
 ### Step 3: Verify Live URLs
 After deploy, test these URLs:
-- `https://yourdomain.pages.dev/` (loads index.html)
+- `https://yourdomain.pages.dev/` (redirects to html/index.html)
 - `https://yourdomain.pages.dev/about.html`
 - `https://yourdomain.pages.dev/about.ar.html`
 - `https://yourdomain.pages.dev/journey.html`

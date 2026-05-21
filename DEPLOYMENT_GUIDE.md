@@ -73,7 +73,7 @@ You can upload files directly via Cloudflare Pages UI (see Step 2).
    ```
    Framework: None
    Build command: (leave empty)
-   Build output directory: html
+   Build output directory: /
    ```
 
 7. **Deploy:**
@@ -97,7 +97,7 @@ After deploy completes, test these URLs in your browser:
 ```
 https://YOUR-PROJECT.pages.dev/
 ```
-✓ Should load `index.html` (the hero carousel page)
+✓ Should redirect to `html/index.html` (the hero carousel page)
 
 ### About Page (English)
 ```
@@ -119,7 +119,7 @@ https://YOUR-PROJECT.pages.dev/journey.html
 
 ### CSS & JS Loading
 Open browser DevTools (F12) → Console  
-✓ No 404 errors for `../css/shared.css` or `../js/*.js`
+✓ No 404 errors for `css/shared.css` or `js/*.js`
 
 ---
 
@@ -277,7 +277,7 @@ your-repo/
 └── README.md
 ```
 
-Build output should be set to `html`
+Build output should be set to `/` so the `html/`, `css/`, and `js/` folders are all published together.
 
 ### CSS/JS not loading (404 errors)
 

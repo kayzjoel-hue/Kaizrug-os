@@ -258,7 +258,7 @@ kaizrug-os-v2.1/
 **Deploy Steps (DO THIS NOW):**
 - [ ] Push to GitHub (or prepare for direct upload)
 - [ ] Configure Cloudflare Pages
-- [ ] Set build output to `html`
+- [ ] Set build output to `/`
 - [ ] Deploy project
 
 **Post-Deploy (DO THIS NEXT):**

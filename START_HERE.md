@@ -73,13 +73,13 @@
 ```
 1. Push to GitHub (or use Cloudflare direct upload)
 2. Configure Cloudflare Pages
-3. Set build output directory to "html"
+3. Set build output directory to `/`
 4. Deploy
 ```
 
 ### STEP 2: Verify Live (10 minutes)
 Test these URLs after deployment:
-- `https://yourdomain.pages.dev/` (loads index.html)
+- `https://yourdomain.pages.dev/` (redirects to html/index.html)
 - `https://yourdomain.pages.dev/about.html`
 - `https://yourdomain.pages.dev/about.ar.html`
 - `https://yourdomain.pages.dev/journey.html`
