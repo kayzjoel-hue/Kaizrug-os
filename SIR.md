@@ -42,10 +42,14 @@ kaizrug-os-v2.1/
 ├── media/                          [CREATED ✓]
 │   └── (reserved for images/video)
 │
+├── archive/                        [ORGANIZED ✓]
+│   ├── workshop/                   [older workshop/studio pages]
+│   └── legacy/                     [unused styles/scripts/assets]
+│
 ├── STRUCTURE.md                    [✓ Directory documentation]
 ├── DEPLOYMENT_GUIDE.md             [✓ Step-by-step deployment instructions]
 ├── SIR.md                          [✓ This file - System Integrity Report]
-└── README.md                       [✓ Original comprehensive guide]
+└── README.md                       [✓ Repository guide]
 ```
 
 **Total Size:** ~100 KB (excluding Tailwind CDN)

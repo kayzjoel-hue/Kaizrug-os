@@ -21,6 +21,9 @@ kaizrug-os-v2.1/
 │   ├── scroll-sections.js      (Scroll animations + particles)
 │   └── stage-animator.js       (Mobile stage rotation)
 ├── media/                      (Reserved for assets)
+├── archive/
+│   ├── workshop/               (Older workshop/studio pages)
+│   └── legacy/                 (Unused root styles/scripts/assets)
 └── README.md                   (This documentation)
 ```
 

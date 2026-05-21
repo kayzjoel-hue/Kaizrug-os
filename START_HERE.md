@@ -32,6 +32,10 @@
    ├── SIR.md                  (System Integrity Report)
    ├── EXECUTION_REPORT.md     (What was done)
    └── README.md               (Original comprehensive guide)
+
+✅ archive/
+   ├── workshop/               (Older workshop/studio reference pages)
+   └── legacy/                 (Unused assets, styles, and scripts)
 ```
 
 ---
@@ -125,6 +129,14 @@ In original `C:\Users\X1 CARBON\Desktop\MTAi\` folder:
 - README.md (reference documentation)
 
 **Recommendation:** Once you confirm the production folder is working live, delete the old HTML files to keep your desktop clean.
+
+**Do not delete the root redirect files inside `MTAi-Production`:**
+- `index.html`
+- `about.html`
+- `about.ar.html`
+- `journey.html`
+
+Those files preserve clean public URLs and forward traffic into `html/`.
 
 ---
 

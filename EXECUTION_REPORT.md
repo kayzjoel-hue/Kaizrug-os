@@ -30,6 +30,10 @@ kaizrug-os-v2.1/
 │
 ├── media/                      (Reserved for future assets)
 │
+├── archive/                    (Non-production reference files)
+│   ├── workshop/               (Older workshop/studio pages)
+│   └── legacy/                 (Unused styles/scripts/assets)
+│
 ├── STRUCTURE.md               (Directory guide + deployment overview)
 ├── DEPLOYMENT_GUIDE.md        (Step-by-step Cloudflare instructions)
 ├── SIR.md                     (System Integrity Report - verification audit)
@@ -75,7 +79,7 @@ kaizrug-os-v2.1/
 - ✅ Media files organized
 - ✅ README documentation updated
 
-**Note:** Original HTML files (old names) still in root - these can be deleted once you confirm production folder is working.
+**Note:** Original HTML files in the old `MTAi` workspace can be deleted once you confirm production is working. In `MTAi-Production`, keep the root redirect files (`index.html`, `about.html`, `about.ar.html`, `journey.html`) because they preserve clean public URLs.
 
 ---
 
