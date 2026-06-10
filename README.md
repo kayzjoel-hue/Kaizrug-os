@@ -1,58 +1,110 @@
-# Kaizrug OS v2.1 Production Site
+# Kaizrug OS
 
-This repository is a static production site for Kaizrug OS v2.1. It has no build
-step, no package manager, and no backend runtime. Deploy the repository root as a
-static site.
+**Kaizrug OS** is a Notion-based governance, execution, memory, automation, and revenue operating framework.
 
-## Production Entry Points
+It is not a Linux distribution, container OS, or kernel-level operating system.
 
-The root HTML files are lightweight redirects kept for clean public URLs:
+It is a **Governance OS**: a structured system for turning information into decisions, decisions into execution, execution into assets, and assets into revenue.
 
-- `index.html` -> `html/index.html`
-- `about.html` -> `html/about.html`
-- `about.ar.html` -> `html/about.ar.html`
-- `journey.html` -> `html/journey.html`
+```text
+Information
+→ Decisions
+→ Execution
+→ Assets
+→ Revenue
+```
 
-The full production pages live in `html/`.
+## What Kaizrug OS does
 
-## Core Files
+Kaizrug OS helps organize:
 
-- `html/index.html` - main landing page with hero, proof carousel, live systems,
-  operating domains, and contact footer.
-- `html/about.html` - English profile and internal proof page.
-- `html/about.ar.html` - Arabic RTL scroll experience with canvas particles.
-- `html/journey.html` - mobile-first story sequence.
-- `css/shared.css` - shared production styling, theme tokens, carousel animation,
-  focus states, RTL helpers, and reduced-motion rules.
-- `js/carousel.js` - homepage carousel pause/play behavior.
-- `js/scroll-sections.js` - Arabic page section activation and particles.
-- `js/stage-animator.js` - journey page scene rotation, progress, and particles.
+- Runtime decisions
+- Execution tracking
+- Knowledge capture
+- Automation governance
+- Product development
+- Public proof
+- Revenue pathways
 
-## Archive
+## Core stack
 
-Non-production files are grouped under `archive/` so the root stays focused on
-deployment:
+```text
+Identity
+↓
+Governance
+↓
+Execution
+↓
+Knowledge
+↓
+Automation
+↓
+Products
+↓
+Revenue
+```
 
-- `archive/workshop/` - older workshop and studio pages plus their local CSS.
-- `archive/legacy/` - unused root styles/scripts, placeholder assets, and the
-  empty legacy `README.md.txt`.
+## Platform roles
 
-These files remain available for reference, but they are not part of the primary
-public URL set.
+```text
+Notion   = Runtime Source of Truth
+GitLab   = Engineering Lab
+GitHub   = Public Truth Layer
+Web      = Distribution Layer
+Products = Revenue Layer
+```
 
-## Deployment
+## Main frameworks
 
-Cloudflare Pages settings:
+- Command Center
+- Truth Stack
+- Design Truth
+- Open Loops
+- Access Maps
+- Automations Log
+- Template Studio
+- Scribe Collection
+- Revenue Engine
+- Royal Connect Africa Bridge
 
-- Framework preset: None
-- Build command: leave empty
-- Build output directory: `/`
+## Public proof links
 
-After deployment, verify:
+- Kaizrug OS: https://kayzjoel-hue.github.io/Kaizrug-os/
+- Kaizrug OS mirror: https://kaizrugos.kayzjoel.workers.dev
+- Kaizrug HQ: https://kaizrug-hq.kayzjoel.workers.dev
+- Kaizrug CV: https://kaizrug-cv.pages.dev
+- Royal Connect Africa: https://rca-site.pages.dev
 
-- `/`
-- `/about.html`
-- `/about.ar.html`
-- `/journey.html`
+## Status
 
-For detailed launch steps, see `DEPLOYMENT_GUIDE.md`.
+```text
+Architecture: Mature
+Public documentation: In progress
+Proof layer: In progress
+Revenue layer: Early
+```
+
+## Current phase
+
+Kaizrug OS has reached architectural maturity.
+
+The current phase is:
+
+```text
+Public Packaging
+→ Proof
+→ Distribution
+→ Revenue Activation
+```
+
+## Boundary rule
+
+```text
+If it runs → Notion
+If it is tested → GitLab
+If it is explained → GitHub
+If it is sold → Web
+If it earns → Products / Revenue ledger
+```
+
+See [`BOUNDARIES.md`](./BOUNDARIES.md).
