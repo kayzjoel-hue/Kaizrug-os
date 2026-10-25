@@ -35,7 +35,7 @@
 
 ## Truth boundary
 
-Notion owns runtime governance and operational truth. GitHub records public explanation and implementation history. A file in this folder does not prove that a system is wired, active, deployed, used, or earning revenue.
+Notion is the canonical authority for project governance and recorded operational status. Claims about integrations, deployment, runtime behavior, usage, or revenue must be verified against evidence from the relevant provider or observed system state. GitHub records public documentation and implementation history; documentation alone does not establish that a system is wired, active, deployed, used, or earning revenue.
 
 ## Current implementation status
 
