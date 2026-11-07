@@ -1,20 +1,22 @@
 # System Integrity Review — Kaizrug OS
 
 **Review date:** 7 November 2026  
-**Review type:** Source and documentation review  
-**Scope limitation:** No production deployment, Cloudflare account, or live application runtime was changed.
+**Review type:** Source, CI/deployment metadata, and documentation review  
+**Scope limitation:** No production deployment, Cloudflare account configuration, or live application runtime was changed.
 
 ## 1. Executive result
 
-The public GitHub repository and static source files were reproduced. The current public routes, deployment-to-commit mapping, production integrations, and formal accessibility conformance were not reproduced in this review.
+The public GitHub repository and static source files were reproduced. A GitHub Pages deploy job record and a Cloudflare Workers preview build record were also reproduced. Current public route responses, the currently served production Worker version, production integrations, and formal accessibility conformance were not reproduced.
 
 | Area | Result | Interpretation |
 |---|---|---|
 | GitHub repository and source files | **VERIFIED** | Public repository and current source are accessible |
 | Static HTML/CSS/JS structure | **VERIFIED** | Files and page references are present in the repository |
 | Wrangler configuration | **VERIFIED** | Worker name and asset directory are declared |
-| Public route availability | **NOT REPRODUCED** | No reliable current page response obtained in this review |
-| Deployment-to-commit mapping | **NOT REPRODUCED** | Hosting deployment evidence was not available |
+| GitHub Pages deploy job | **VERIFIED** | GitHub reported success for the 25 October 2026 main commit |
+| Cloudflare PR preview build | **VERIFIED** | Cloudflare reported successful build for review commit `4636c1fdc6a6de3874af5e8df2a15fa5853c0304` |
+| Current public route responses | **NOT REPRODUCED** | No reliable current page response obtained in this review |
+| Current production Worker/version mapping | **NOT REPRODUCED** | Preview metadata does not establish the active production version or route |
 | Production automation / autonomous agents | **NOT CLAIMED** | No current execution proof was reproduced |
 | WCAG 2.1 AA conformance | **NOT CERTIFIED** | Source patterns are not a formal conformance audit |
 | Customer usage / revenue | **NOT REPRODUCED** | Must be evidenced through real customer outcomes and records |
@@ -39,14 +41,14 @@ The branch `fix/public-claims-and-docs-2026-11-07` contains proposed corrections
 - Distinguish repository/source proof from runtime and deployment proof.
 - Replace old deployment instructions with a verification-first recovery process.
 
-These changes are on a review branch. They have not been merged to `main` or deployed.
+Cloudflare successfully built this review branch and reported a preview URL. The preview HTTP response was not independently reproduced in the available test path. These changes remain unmerged to `main` and are not verified as a production release.
 
 ## 4. Required closure evidence
 
 Before any route is marked LIVE or VERIFIED, record:
 
 - Current HTTP/browser retrieval and observed page content.
-- Hosting project or Worker identity.
+- Hosting project or Worker identity and production route configuration.
 - Deployment ID or asset version.
 - Source repository, branch, and deployed commit.
 - Key interaction tests and browser-console/network results.
