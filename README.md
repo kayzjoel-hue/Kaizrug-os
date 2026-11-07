@@ -57,9 +57,9 @@ A repository, design, workflow specification, or deployment configuration does n
 | Static-site source | **VERIFIED** — HTML, CSS, JavaScript, and Wrangler configuration are present |
 | Latest observed main-branch commit | **VERIFIED** — 25 October 2026; see [PROOF.md](./PROOF.md) |
 | GitHub Pages deploy job | **VERIFIED** — GitHub reported success for the 25 October main-branch commit; current route content is not thereby verified |
-| Cloudflare Workers PR preview build | **VERIFIED** — Cloudflare reported a successful preview build for the review-branch commit; HTTP behavior remains untested |
-| Current public route responses | **NOT REPRODUCED** in the current review |
-| Current production runtime/version mapping | **NOT REPRODUCED** |
+| Cloudflare Workers PR preview build | **VERIFIED** — Cloudflare built the current review-branch head; preview smoke test returned HTTP 200 for the key pages and assets |
+| Current PR preview route responses | **VERIFIED** — HTTP 200 for root, main pages, shared CSS, and referenced JavaScript; see [PROOF.md](./PROOF.md) |
+| Current production runtime/version mapping | **NOT REPRODUCED** — preview is not production |
 | Production automations / autonomous agents | **NOT CLAIMED** |
 | Formal WCAG 2.1 AA conformance | **NOT CERTIFIED** by this repository audit |
 | Customer outcomes / revenue | Must be evidenced separately; no claim is made here |
@@ -93,6 +93,6 @@ Use these distinctions consistently:
 - **INFERRED** — suggested by source structure or configuration, not directly observed.
 - **BLOCKED** — a required permission, source, or test is unavailable.
 
-Do not promote a designed capability or successful build into a live-service claim without a current runtime test.
+Do not promote a designed capability or preview test into a production-service claim without a current production runtime test.
 
 See [BOUNDARIES.md](./BOUNDARIES.md).
