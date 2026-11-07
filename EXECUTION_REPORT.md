@@ -1,3 +1,7 @@
+> **Historical record — 21 May 2026.** This report documents a prior local-folder preparation exercise. Its checkmarks and “production-ready” language are historical statements, not current evidence of deployment, live routes, security review, or WCAG conformance. For the current position, use [PROOF.md](./PROOF.md), [SIR.md](./SIR.md), and [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md). Do not use this report alone to authorize a new deployment or deletion of local files.
+
+---
+
 # EXECUTION REPORT – Kaizrug OS v2.1 Production Deployment
 
 **Date:** May 21, 2026  
