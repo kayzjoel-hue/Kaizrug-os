@@ -18,10 +18,11 @@ This document supersedes the May 2026 setup instructions in this repository. Do 
 
 Current CI/deployment evidence:
 - GitHub Actions reported a successful GitHub Pages deploy job on 25 October 2026 for main commit `f0e60bdc1c64f128f6c589de3b3b6ba6c86d4975`.
-- Cloudflare Workers reported a successful preview build for review commit `4636c1fdc6a6de3874af5e8df2a15fa5853c0304`.
-- The Cloudflare preview build reported Worker version `0d0518d1-e454-4844-93cc-e258d1fef779` and branch preview URL `https://fix-public-claims-and-docs-2026-11-07-kaizrugos.kayzjoel.workers.dev`.
+- Cloudflare Workers reported a successful preview build for current review commit `e16e4098db03a65d1308d085c41354dd46d201de`.
+- The current preview build reported Worker version `2d0e766d-d573-45cf-b339-70af339874c5` and branch preview URL `https://fix-public-claims-and-docs-2026-11-07-kaizrugos.kayzjoel.workers.dev`.
+- A targeted HTTP smoke test returned 200 for the root, `/html/`, the English and Arabic profile routes, the journey route, shared CSS, and the three referenced JavaScript assets.
 
-These records prove that the respective build/deploy jobs completed successfully and identify their source commits. They do **not** prove that the public routes return the expected content, that the preview is browser-tested, or that the current production Worker route serves either version.
+These records prove that the build completed and the preview endpoints returned content at test time. They do **not** prove full browser rendering, interaction behavior, mobile layout, console cleanliness, formal accessibility conformance, or the current production Worker route.
 
 ## 2. Do not do these things during recovery
 
