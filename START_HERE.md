@@ -19,10 +19,13 @@ A public documentation and static-site source repository for the Kaizrug OS gove
 ## Current status
 
 - GitHub source repository and files: **VERIFIED**.
-- Current public route availability: **NOT REPRODUCED**.
-- Deployment-to-commit mapping: **NOT REPRODUCED**.
+- GitHub Pages deploy job for the 25 October 2026 main commit: **VERIFIED**.
+- Cloudflare Workers preview build for the current review branch: **VERIFIED**.
+- Current public route responses and production Worker version: **NOT REPRODUCED**.
 - Production automations and autonomous agents: **NOT CLAIMED**.
 - Formal WCAG 2.1 AA conformance: **NOT CERTIFIED**.
+
+A successful deploy job or preview build is not proof that a route responds correctly today. See [PROOF.md](./PROOF.md) for the exact commit and build identifiers.
 
 ## Before changing anything
 
@@ -30,7 +33,7 @@ A public documentation and static-site source repository for the Kaizrug OS gove
 - Read the authority and permission rules in [BOUNDARIES.md](./BOUNDARIES.md).
 - Preserve existing Notion runtime authority.
 - Keep private records, credentials, access maps, client data, and financial data out of this public repository.
-- Do not change production deployment settings until the current deployment owner and source mapping are identified.
+- Do not change production deployment settings until the live route, production configuration, and source mapping are verified.
 
 ## Historical handoff
 
