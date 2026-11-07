@@ -6,7 +6,7 @@
 
 ## 1. Executive result
 
-The public GitHub repository and static source files were reproduced. A GitHub Pages deploy job record and a Cloudflare Workers preview build record were also reproduced. Current public route responses, the currently served production Worker version, production integrations, and formal accessibility conformance were not reproduced.
+The public GitHub repository and static source files were reproduced. A GitHub Pages deploy job record and a successful Cloudflare Workers preview build were reproduced. A targeted HTTP smoke test of the current PR preview returned 200 for the key HTML routes, CSS, and JavaScript assets. The separately recorded production routes, currently served production Worker version, production integrations, full browser behavior, and formal accessibility conformance were not reproduced.
 
 | Area | Result | Interpretation |
 |---|---|---|
@@ -14,8 +14,9 @@ The public GitHub repository and static source files were reproduced. A GitHub P
 | Static HTML/CSS/JS structure | **VERIFIED** | Files and page references are present in the repository |
 | Wrangler configuration | **VERIFIED** | Worker name and asset directory are declared |
 | GitHub Pages deploy job | **VERIFIED** | GitHub reported success for the 25 October 2026 main commit |
-| Cloudflare PR preview build | **VERIFIED** | Cloudflare reported successful build for review commit `4636c1fdc6a6de3874af5e8df2a15fa5853c0304` |
-| Current public route responses | **NOT REPRODUCED** | No reliable current page response obtained in this review |
+| Cloudflare PR preview build | **VERIFIED** | Cloudflare reported successful build for current review commit `e16e4098db03a65d1308d085c41354dd46d201de` |
+| PR preview HTTP smoke test | **VERIFIED** | HTTP 200 for root, main pages, shared CSS, and referenced JavaScript; updated Arabic copy retrieved |
+| Separately recorded production route responses | **NOT REPRODUCED** | No production page response or production source/version mapping obtained |
 | Current production Worker/version mapping | **NOT REPRODUCED** | Preview metadata does not establish the active production version or route |
 | Production automation / autonomous agents | **NOT CLAIMED** | No current execution proof was reproduced |
 | WCAG 2.1 AA conformance | **NOT CERTIFIED** | Source patterns are not a formal conformance audit |
@@ -41,7 +42,7 @@ The branch `fix/public-claims-and-docs-2026-11-07` contains proposed corrections
 - Distinguish repository/source proof from runtime and deployment proof.
 - Replace old deployment instructions with a verification-first recovery process.
 
-Cloudflare successfully built this review branch and reported a preview URL. The preview HTTP response was not independently reproduced in the available test path. These changes remain unmerged to `main` and are not verified as a production release.
+Cloudflare successfully built the current review branch and reported a preview URL. The preview returned HTTP 200 for the root, key page routes, shared CSS, and referenced JavaScript. This was not a full browser or interaction test. The changes remain unmerged to `main` and are not a production release.
 
 ## 4. Required closure evidence
 
