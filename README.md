@@ -47,11 +47,14 @@ Revenue
 ## Platform roles
 
 ```text
-Notion   = Runtime Source of Truth
-GitLab   = Engineering Lab
-GitHub   = Public Truth Layer
-Web      = Distribution Layer
-Products = Revenue Layer
+Notion      = Project intent, status, permissions, and governance
+GitHub      = Source code and version history
+GitLab      = Engineering and test evidence (where configured)
+Vercel      = Deployment and hosted-runtime evidence (where used)
+Cloudflare  = Deployment and edge-runtime evidence (where used)
+Supabase    = Database and backend-state evidence (where used)
+Web         = Distribution and customer access
+Products    = Commercial offers; transactions require payment/delivery evidence
 ```
 
 ## Main frameworks
@@ -100,11 +103,13 @@ Public Packaging
 ## Boundary rule
 
 ```text
-If it runs → Notion
-If it is tested → GitLab
-If it is explained → GitHub
-If it is sold → Web
-If it earns → Products / Revenue ledger
+If it is governed → Notion
+If it is implemented → canonical repository
+If it is tested → test runner / CI evidence
+If it is deployed → hosting provider evidence
+If it responds → observed endpoint evidence
+If it stores data → database/provider evidence
+If it is used or earns → customer, transaction, and finance evidence
 ```
 
 See [`BOUNDARIES.md`](./BOUNDARIES.md).
